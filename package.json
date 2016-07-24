@@ -1,0 +1,25 @@
+{
+  "name": "BuildANightLifeApp",
+  "version": "0.0.7",
+  "description": "Build a NightLife App",
+  "main": "server.js",
+  "repository": "https://github.com/MHayesEire/Nightlife_Coordination_App.git",
+  "author": "Martin Hayes",
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.0",
+    "ejs": "~2.4.2",
+    "express": "~4.0.0",
+    "express-session": "~1.0.0",
+    "method-override": "~1.0.0",
+    "mongodb": "2.1.4",
+    "morgan": "~1.0.0",
+    "node-twitter-api": "^1.7.4",
+    "request": "^2.73.0",
+    "yelp": "^1.0.1"
+  },
+  "engines": {
+    "node": "4.4.5",
+    "npm": "2.15.5"
+  }
+}

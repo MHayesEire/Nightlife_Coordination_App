@@ -1,0 +1,91 @@
+<!-- views/pages/nightLife.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title><%=title %></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link href='https://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body        { padding-top:80px; background-image: url("https://c6.staticflickr.com/9/8232/8515708861_a1b5d46f88_z.jpg");font-family: 'Alegreya Sans', sans-serif; font-weight: 500;}
+        h1          {font-family: 'Aguafina Script', cursive;}
+        img.yelp    { display: block;    margin-left: auto;    margin-right: auto }
+        .boxed      { border: 1px solid green ; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron text-center">
+<%if (sn === 0) { %>
+    <h1><span class="fa"></span> NightLife Search App</h1>
+<% }else{%>
+    <h1><span class="fa"></span> Hi <%=sn %> </h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>     
+    <h1> NightLife Search App</h1>
+<% } %>
+    <form action="/yelpSearch" method="post">
+        <div class="form-group">
+            <label>Name of Your Location: </label>
+            <input type="text" class="form-control" name="search">
+        </div>  
+        <button type="submit" class="btn btn-success btn-lg"> Find Bars!</button>
+    </form>
+        
+<h2>Night Life Venue Listing:</h2>
+ <!-- <pre> <%- JSON.stringify(data) %> </pre> -->
+  <!-- <%- JSON.stringify(sum) %> -->
+  
+
+<% for(var i=0; i<data.length; i++) {%>
+  <!--<li><b>"data info" :</b>"<%= data[i] %>"</li>   -->
+  
+  <div class="boxed">  
+  
+   <a target="_blank" href="<%= data[i].url %>"><%= data[i].name %> Yelp Page</a><br />
+ <!--  <li><b>"url" :</b><a href="going/<%= data[i].id %>"><%= data[i].name %></a></li>  -->
+  <!--    <a href="going/<%= data[i].id %>&name=<%= data[i].name %>"> 
+  <button type="submit" name="going" value="<%= data[i].name %>" class="btn btn-warning btn-lg">Going [0] </button> 
+  </a> -->
+  
+    <!-- -->  
+<form name="form" action="/userGoing" method="post" id="form1" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="venue_id" value="<%= data[i].id %>">
+<input type="hidden" name="venue_name" value="<%= data[i].name %>">
+<input type="hidden" name="user_name" value="<%= sn %>">
+     <!-- send to process form -->
+<button type="submit" name="add_going" value="1" class="btn btn-default btn-lg"><%= data[i].going %> going  </button><br />
+    </form>
+    
+    <!-- -->
+   <b>Yelp Rating: </b><img src="<%= data[i].rating_img_url %>"><br />
+<img src="<%= data[i].image_url %>"><br />
+   <i><%= data[i].snippet_text %></i> <br /><!--comment --> 
+  <!-- <li><b>"Name" :</b>"<%= data[i].name %>"</li>
+   <li><b>"Venue Id: " :</b>"<%= data[i].id %>",</li> -->
+
+</div> 
+<br />
+<% }%>
+<%if (error =="") { %>
+
+<% }else{%>
+<li><b style="color: red;"><%=error %></b></li>
+<% } %>
+</ul>
+    <form action="/yelpSearch" method="post">
+        <div class="form-group">
+            <label>Name of Your Location: </label>
+            <input type="text" class="form-control" name="search">
+        </div>  
+        <button type="submit" class="btn btn-success btn-lg"> Find Bars </button>
+    </form>   
+    </div>
+
+</div>
+<div class="yelp">
+<img class="yelp" width="130" height="30" alt="Powered by Yelp, light" src="//s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png" ,="">
+</div>
+</body>
+</html>

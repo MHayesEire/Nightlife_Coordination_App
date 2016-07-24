@@ -1,0 +1,44 @@
+<!-- views/pages/search.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title><%=title %></title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link href='https://fonts.googleapis.com/css?family=Aguafina+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body        { padding-top:80px; background-image: url("https://c6.staticflickr.com/9/8232/8515708861_a1b5d46f88_z.jpg");font-family: 'Alegreya Sans', sans-serif; font-weight: 500;}
+        h1          {font-family: 'Aguafina Script', cursive;}
+        img.yelp    { display: block;    margin-left: auto;    margin-right: auto }
+    </style>    
+</head>
+<body>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+<%if (sn === 0) { %>
+    <h1 class="sn"><span class="fa fa-sign-in"></span> NightLife Search App</h1>
+<% }else{%>
+     Hi <%=sn %>
+    <a href="/logout" class="btn btn-default btn-sm">Logout</a> 
+    <h1> NightLife Search App</h1>
+<% } %>
+
+
+    <!-- SEARCH FORM -->
+    <form action="/yelpSearch" method="post">
+        <div class="form-group">
+            <label>Name of Your Location: </label>
+            <input type="text" class="form-control" name="search">
+        </div>  
+        <button type="submit" class="btn btn-success btn-lg"> Find Bars!</button>
+    </form>
+</div>
+
+</div>
+<div class="yelp">
+<img class="yelp" width="130" height="30" alt="Powered by Yelp, light" src="//s3-media2.fl.yelpcdn.com/assets/srv0/developer_pages/9bfe343c35cc/assets/img/yelp_powered_btn_light@2x.png" ,="">
+</div>
+</body>
+</html>
